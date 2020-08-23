@@ -1,6 +1,6 @@
 import React from "react";
 import * as Yup from "yup";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 
 import useFormState from "../hooks/useFormState";
 
@@ -23,7 +23,7 @@ const initState = {
   confirmPassword: "",
 };
 
-const RegisterForm = ({ onSubmit }) => {
+const RegisterForm = ({ onSubmit, isLoading }) => {
   const { formState, handleChange, handleBlur, handleSubmit } = useFormState(
     initState,
     validationSchema
@@ -92,8 +92,14 @@ const RegisterForm = ({ onSubmit }) => {
         )}
       </Form.Group>
       <div className="d-flex justify-content-center">
-        <Button variant="primary" type="submit">
-          Cadastrar
+        <Button variant="primary" type="submit" disabled={isLoading}>
+          {isLoading ? (
+            <Spinner animation="border" role="status" size="sm">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          ) : (
+            "Cadastrar"
+          )}
         </Button>
       </div>
     </Form>
