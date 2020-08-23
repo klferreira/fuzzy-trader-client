@@ -1,6 +1,7 @@
 export const AUTH = {
   LOGIN: 'AUTH_LOGIN',
   LOGOUT: 'AUTH_LOGOUT',
+  REHYDRATE: 'persist/REHYDRATE'
 };
 
 export const login = ({ user, token }) => ({
