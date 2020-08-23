@@ -1,9 +1,10 @@
-import axios from 'axios';
+import getApi from "./index";
 
-export default (host) => {
-
+export default () => {
+  const api = getApi();
+  
   return {
-    login: (data) => axios.post(`${host}/auth/login`, data),
-    register: (data) => axios.post(`${host}/auth/register`, data)
-  }
+    login: (data) => api.post("auth/login", data),
+    register: (data) => api.post("auth/register", data),
+  };
 }

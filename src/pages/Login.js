@@ -5,10 +5,11 @@ import { connect, useSelector, useDispatch } from "react-redux";
 
 import LoginForm from "../components/LoginForm";
 
-import api from "../api";
+import authApi from "../api/auth";
 import { login } from "../store/actions/auth";
 
 const Login = () => {
+  const auth = authApi();
   const history = useHistory();
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(false);
@@ -20,7 +21,7 @@ const Login = () => {
 
   const handleSubmit = ({ email, password }) => {
     setLoading(true);
-    api.auth
+    auth
       .login({ email, password })
       .then((res) => {
         dispatch(login(res.data));

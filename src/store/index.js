@@ -21,8 +21,10 @@ const middlewares = compose(
     : (f) => f
 );
 
+export const store = createStore(persistedReducer, {}, middlewares);
+const persistor = persistStore(store);
+
 export default () => {
-  let store = createStore(persistedReducer, {}, middlewares);
-  let persistor = persistStore(store);
+  
   return { store, persistor };
 };

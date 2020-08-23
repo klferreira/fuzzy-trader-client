@@ -4,15 +4,16 @@ import { useHistory } from "react-router-dom";
 
 import RegisterForm from "../components/RegisterForm";
 
-import api from "../api";
+import authApi from "../api/auth";
 
 const Register = () => {
+  const auth = authApi();
   const history = useHistory();
   const [isLoading, setLoading] = useState(false);
 
   const handleSubmit = (values) => {
     setLoading(true);
-    api.auth
+    auth
       .register(values)
       .then(() => history.push("/login"))
       .catch((err) => console.log(err))
