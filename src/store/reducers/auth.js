@@ -1,4 +1,6 @@
-export default (state = { user: {}, token: null }, action) => {
+const initialState = { user: {}, token: null };
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case "AUTH_LOGIN":
       return {
@@ -7,7 +9,7 @@ export default (state = { user: {}, token: null }, action) => {
         token: action.payload.token,
       };
     case "AUTH_LOGOUT":
-      return { ...state, user: {} };
+      return initialState;
     default:
       return state;
   }
