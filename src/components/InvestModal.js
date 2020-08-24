@@ -8,7 +8,7 @@ import priceApi from "../api/prices";
 const round = (value, decimals) =>
   Number(Math.round(value + "e" + decimals) + "e-" + decimals);
 
-const InvestModal = ({ investAmount, isOpen, onClose }) => {
+const InvestModal = ({ investAmount, isOpen, onClose, onConfirm }) => {
   const [data, setData] = useState([]);
   const [timer, setTimer] = useState(0);
   const [isLoading, setLoading] = useState(true);
@@ -38,7 +38,7 @@ const InvestModal = ({ investAmount, isOpen, onClose }) => {
         fetchPrices()
           .then(setData)
           .finally(() => {
-            setTimer(10);
+            setTimer(15);
             setLoading(false);
             setSelected(null);
           });
@@ -75,7 +75,7 @@ const InvestModal = ({ investAmount, isOpen, onClose }) => {
           </div>
         ) : (
           <>
-            Refreshing in {timer}
+            Atualizando em {timer}
             <Row>{data.map(renderPriceOffer)}</Row>
           </>
         )}
@@ -85,7 +85,7 @@ const InvestModal = ({ investAmount, isOpen, onClose }) => {
           Fechar
         </Button>
         {selected ? (
-          <Button variant="primary" onClick={onClose}>
+          <Button variant="primary" onClick={() => onConfirm(selected)}>
             Investir {investAmount} USD em {selected.symbol}
           </Button>
         ) : (
