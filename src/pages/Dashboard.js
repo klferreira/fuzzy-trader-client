@@ -7,7 +7,7 @@ import InvestModal from "../components/InvestModal";
 
 import walletApi from "../api/wallet";
 
-import { round } from '../utils';
+import { round } from "../utils";
 
 const Dashboard = () => {
   const _wallet = walletApi();
@@ -43,7 +43,10 @@ const Dashboard = () => {
         symbol: asset.symbol,
         amount: investAmount / asset.prices.open,
       })
-      .then(res => setWallet(res.data))
+      .then((res) => {
+        setWallet(res.data);
+        setInvestAmount("");
+      });
   };
 
   const renderAsset = (item, index) => {
@@ -67,7 +70,12 @@ const Dashboard = () => {
             onChange={handleChangeInvestAmount}
             size="lg"
           />
-          <Button variant="primary" size="lg" type="submit" disabled={!investAmount}>
+          <Button
+            variant="primary"
+            size="lg"
+            type="submit"
+            disabled={!investAmount}
+          >
             Investir
           </Button>
         </Form>
