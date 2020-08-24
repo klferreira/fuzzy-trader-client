@@ -7,6 +7,8 @@ import InvestModal from "../components/InvestModal";
 
 import walletApi from "../api/wallet";
 
+import { round } from '../utils';
+
 const Dashboard = () => {
   const _wallet = walletApi();
   const { user } = useSelector((state) => state.auth);
@@ -47,7 +49,7 @@ const Dashboard = () => {
   const renderAsset = (item, index) => {
     return (
       <p key={index}>
-        {item.symbol} - {item.amount}
+        {item.symbol} - {round(item.amount, 8)}
       </p>
     );
   };

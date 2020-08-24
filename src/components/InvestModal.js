@@ -5,8 +5,7 @@ import PriceOffer from "./PriceOffer";
 
 import priceApi from "../api/prices";
 
-const round = (value, decimals) =>
-  Number(Math.round(value + "e" + decimals) + "e-" + decimals);
+import { round } from '../utils';
 
 const InvestModal = ({ investAmount, isOpen, onClose, onConfirm }) => {
   const [data, setData] = useState([]);
